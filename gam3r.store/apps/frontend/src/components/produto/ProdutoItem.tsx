@@ -3,6 +3,7 @@ import { Produto } from "@gstore/core"
 import Link from "next/link"
 import Image from 'next/image'
 import { IconShoppingCartPlus } from "@tabler/icons-react"
+import NotaReview from "../shared/NotaReview"
 
 export interface ProdutoItemProps {
     produto: Produto
@@ -14,9 +15,12 @@ export default function ProdutoItem(props: ProdutoItemProps) {
         <Link
             href={`/produto/${produto.id}`}
             className="flex flex-col bg-violet-dark border border-white/10 rounded-xl relative max-w-[350px]"
-    >
-        <div className="h-48 w-full relative">
-            <Image src={produto.imagem} className="object-contain" fill alt='Imagem do produto'/>
+        >
+            <div className="absolute flex justify-end top-2.5 right-2.5">
+                <NotaReview nota={produto.nota} />
+            </div>
+            <div className="h-48 w-full relative">
+                <Image src={produto.imagem} className="object-contain" fill alt='Imagem do produto'/>
             </div>
             <div className="flex-1 flex flex-col p-5 gap-3 border-top border-white/10">
                 <span className="text-lg font-semibold">{props.produto.nome}</span>
